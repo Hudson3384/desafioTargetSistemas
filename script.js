@@ -1,40 +1,47 @@
 
+console.log('[DESAFIO - ESTÁGIO TARGET SISTEMAS]')
 //resolvendo desafio de fibonnaci
-function desafioFibonnaci() {
-    let num = document.querySelector('input#inputFibonnaci')
+function secondChallenge() {
+    console.log('[--- 2° DESAFIO ---]')
+    const prompt = require('prompt-sync')
+    let PromptSync = prompt()
+    
+    let num = Number(PromptSync('Informe um número:    '))
+    
     //verificação de entrada do valor: 
-    if(num.value.length == 0 || isNaN(num.value) == true){
-        window.alert('[ERRO] Informe um número!')
+    if(isNaN(num) == true){
+        console.log('[ERRO] Informe um número!')
+        let num = PromptSync('Informe um número:    ')
     } else {
         let ult = 1
         let penut = 0 
-        let resp = document.querySelector('p.answerDesafio2')
-        resp.innerHTML = ''
+        
         //verificação do termo 1 e 0 
-        if(num.value  == ult || num.value == penut){
-            resp.innerHTML = `O número ${num.value} pertence a sequência de fibonnaci`
+        if(num  === ult || num === penut){
+            console.log(`Os número ${num} pertence a sequência de fibonnaci`) 
         } else {
             //verificação do termo até o número de fibonnaci ser superior ao termo informado
             let fibo = 0;
-            while(fibo <= num.value){
+            do {
                  fibo = ult + penut;
                  penut = ult
                  ult = fibo
-                 if(fibo == num.value){
-                    resp.innerHTML = `O número ${num.value} pertence a sequência de fibonnaci`
-                 } 
-            } if(resp.innerHTML == ''){
-                //resposta ao caso de não ser correspondente
-                resp.innerHTML = `O número ${num.value} não pertence a sequência de fibonnaci`
+                 if(fibo === num){
+                    console.log(`O número ${num} pertence a sequência de fibonnaci`) 
+                    break;
+                 }
+            }while (fibo <= num)
+            if(fibo !== num){
+                console.log(`O número ${num} não pertence a sequência de fibonnaci`) 
             }
         }
     }
 }
 
-
-
+secondChallenge()
+//desafio com daddos extraidos de um JSON
 function ThirdChallenge (){
-    let resDesafioTerceiro = document.getElementsByClassName('AnswerThirdChallenge')
+    console.log('[--- 3° DESAFIO ---]')
     const dados = JSON.parse(`[
         {
             "dia": 1,
@@ -157,13 +164,14 @@ function ThirdChallenge (){
             "valor": 8414.61
         }
     ]`)
+//Excluindo dados que não tiveram faturamento
 let dadosFiltrados = []
  dados.forEach(element => {
     if(element.valor !== 0){
         dadosFiltrados.push(element)
     }
 })
-//Valor máxiimo e Mínimo
+//Valor máximo e Mínimo
 let min = {valor: Infinity}
 let max = {valor: -Infinity}
 for ( let i of dadosFiltrados) {
@@ -178,19 +186,24 @@ dadosFiltrados.forEach(i => sum+=i.valor )
 //média dos rendimentos 
 const media = sum/dadosFiltrados.length //dias que não tiveram rendimento zero
 
+//dias com rendimentos acima da média
 let diasAcimaMedia = 0;
 dadosFiltrados.forEach(i => {
     if (i.valor > media) {
          diasAcimaMedia++
     } 
 })
-resDesafioTerceiro.textcontent = `O menor valor foi de ${min.valor}, o maior de ${max.valor} e a quantidade
-de dias que ultrapassaram a média foi de ${diasAcimaMedia} dias`
+console.log(`O menor valor foi de ${min.valor}`)
+console.log(`O maior valor foi de ${max.valor}`)
+console.log(`Foram ao total, ${diasAcimaMedia} dias que ultrapassaram a média`)
 }
 ThirdChallenge()
 
+
+//porcentual de colaboração em cada estado
 function fourthChallenge(){
-    let answerFourhChallenge = document.querySelector('p.answerFourhChallenge')
+    console.log('[--- 4° DESAFIO ---]')
+    //uso do map por se encaixar na função chave/valor
         const fatGeral = new Map([  
             ['SP', 67836.43],
             ['RJ', 36678.66],
@@ -201,7 +214,7 @@ function fourthChallenge(){
     let Total = 0;
     fatGeral.forEach((value) => Total += value)
     fatGeral.forEach((value,key) => {
-        answerFourhChallenge.innerHTML += `O faturamento de ${key} representa ${value/Total*100}`
+        console.log(`${key} representa ${(value/Total*100).toFixed(2)}% do Faturamento Total`)
     })  
 }
 fourthChallenge()
