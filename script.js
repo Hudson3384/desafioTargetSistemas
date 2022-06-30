@@ -33,8 +33,8 @@ function desafioFibonnaci() {
 
 
 
-(function (){
-    var resDesafioTerceiro = document.body.getElementsByClassName('AnswerThirdChallenge')
+function ThirdChallenge (){
+    let resDesafioTerceiro = document.getElementsByClassName('AnswerThirdChallenge')
     const dados = JSON.parse(`[
         {
             "dia": 1,
@@ -182,23 +182,27 @@ let diasAcimaMedia = 0;
 dadosFiltrados.forEach(i => {
     if (i.valor > media) {
          diasAcimaMedia++
-    }
-   
+    } 
 })
-resDesafioTerceiro.innerHTML = `O menor valor foi de ${min.valor}, o maior de ${max.valor} e a quantidade
+resDesafioTerceiro.textcontent = `O menor valor foi de ${min.valor}, o maior de ${max.valor} e a quantidade
 de dias que ultrapassaram a média foi de ${diasAcimaMedia} dias`
+}
+ThirdChallenge()
 
-})()
-
-// (function(){
-//     const fatGeral = {
-//         SP: 67836.43,
-//         RJ: 36678.66,
-//         MG: 29229.88,
-//         ES: 27165.48,
-//         Outros: 19849.53}
-//     const fatTotal = 0;
-//     //fatGeral.forEach(i => fatTotal+=i.)
-//     console.log(fatTotal)
-// })()
+function fourthChallenge(){
+    let answerFourhChallenge = document.querySelector('p.answerFourhChallenge')
+        const fatGeral = new Map([  
+            ['SP', 67836.43],
+            ['RJ', 36678.66],
+            ['MG', 29229.88],
+            ['ES', 27165.48],
+            ['Outros', 19849.53]
+    ])
+    let Total = 0;
+    fatGeral.forEach((value) => Total += value)
+    fatGeral.forEach((value,key) => {
+        answerFourhChallenge.innerHTML += `O faturamento de ${key} representa ${value/Total*100}`
+    })  
+}
+fourthChallenge()
     
