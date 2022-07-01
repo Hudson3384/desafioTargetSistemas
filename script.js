@@ -218,4 +218,18 @@ function fourthChallenge(){
     })  
 }
 fourthChallenge()
+
+function fifthChallenge(){
+    console.log('[--- 5° DESAFIO ---]')
+    const promptString = require('prompt-sync')
+    let PromptSync = promptString()
     
+    let string = PromptSync('Informe uma palavra:    ')
+    let inverseString = ''
+    for(let i = string.length-1;i>=0;i--){
+        inverseString += string[i]
+    }
+    console.log(`A palavra em modo inverso é ${inverseString}`)
+    
+}
+fifthChallenge()
